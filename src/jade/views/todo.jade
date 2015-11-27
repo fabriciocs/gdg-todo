@@ -1,0 +1,42 @@
+h3 Todo
+  button.pull-right.btn.btn-success(ng-click='todo.reload()') Recarregar
+  small Controle suas tarefas
+
+.table-grid.todo
+  .col.col-lg
+    .pr-lg
+
+      form(ng-submit='todo.addTodo()').mb-xl
+        .form-group
+          input.form-control(ng-trim="true", type='text', ng-model='todo.todo.titulo', placeholder='Titulo..', required)
+        .form-group
+          textarea.form-control(ng-trim="true", ng-model='todo.todo.descricao', placeholder='Descrição..', rows="8")
+        
+        button.btn.btn-primary.btn-block(type='submit') {{todo.editingTodo ? 'Editar Todo' : 'Adicionar Todo'}}
+
+  .col.todo-item-list
+    .lead.text-muted.text-center.loader-demo(ng-show='!todo.items.length')
+      .pacman
+        div
+        div
+        div
+        div
+        div
+    accordion(close-others="true")
+      accordion-group.todo-item(ng-repeat='item in todo.items | orderBy:"complete"', ng-class="{'todo-complete': item.complete}", is-disabled="item.complete")
+        accordion-heading
+          span.close(ng-click='todo.removeTodo(item, $event)') ×
+          .inline.checkbox.c-checkbox
+            label(ng-click="$event.stopPropagation()")
+              input(type='checkbox', ng-model='item.complete',ng-change="todo.updateTodo(item)" id="{{'todo-item-'+$index}}", ng-disabled="todo.editingTodo")
+              span.fa.fa-check
+          span.todo-title(ng-bind='item.titulo') Titulo
+          span.todo-edit.fa.fa-pencil(ng-click="todo.editTodo($index, $event)")
+        p
+          span(ng-bind='item.descricao')
+          span.text-muted(ng-if="item.descricao === ''") Item sem descrição
+    
+    p.text-right(ng-if="todo.items.length > 0")
+      span {{ todo.totalCompleted() }} Completos
+      | - 
+      span {{ todo.totalPending() }} Pedentes

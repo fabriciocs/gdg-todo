@@ -1,0 +1,3 @@
+[
+  { "text": "Todo List", "icon": "fa fa-tasks",  "sref": "app.todo", "translate": "sidebar.nav.extra.TODO" }
+]
