@@ -23,5 +23,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <icon src="www/img/icon.png" />
+    <icon src="icon.png" />
 </widget>
