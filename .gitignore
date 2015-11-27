@@ -36,6 +36,8 @@ www/app/css
 www/app/js
 www/app/views
 www/index.html
+platforms/android
+platforms/browser
 
 
 # Created by .ignore support plugin (hsz.mobi)
